@@ -24,6 +24,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	//super.configure(http);
     	//maintenant pour authoriser l'authentification
     	http.formLogin();
+    	//http.httpBasic();
+    	//quelque choix les caracteres apres (**)
+    	http.authorizeRequests().antMatchers("/save**/**","/delete**/**").hasRole("ADMIN");
     	http.authorizeRequests().anyRequest().authenticated();
+    	
+    	//pour l'activer ou le desactiver le sincroniger tookens
+    	
+    	//http.csrf().disable();
+    	http.csrf();
     }
 }
